@@ -45,17 +45,18 @@ public class PostController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Post> buscar(@PathVariable Long id) {
 		Optional<Post> findById = posts.findById(id);
-		if(findById.isEmpty()) {
+		if(!findById.isPresent()) {
 			return ResponseEntity.notFound().build();
 		}
-		return ResponseEntity.ok(findById.get());
+		Post post = findById.get();
+		return ResponseEntity.ok(post);
 	}
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(value = HttpStatus.ACCEPTED)
 	public ResponseEntity<Post> excluir(@PathVariable Long id) {
 		Optional<Post> findById = posts.findById(id);
-		if(findById.isEmpty()) {
+		if(!findById.isPresent()) {
 			return ResponseEntity.notFound().build();
 		}
 		posts.delete(findById.get());

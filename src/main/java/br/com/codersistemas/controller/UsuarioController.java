@@ -30,7 +30,7 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioRepository posts;
 	
-	//http://localhost:8084/departamentos
+	//http://localhost:8084/coder-blog/usuarios
 	@GetMapping
 	public List<Usuario> listar() {
 		return posts.findAll();
@@ -39,7 +39,7 @@ public class UsuarioController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Usuario> buscar(@PathVariable Long id) {
 		Optional<Usuario> findById = posts.findById(id);
-		if(findById.isEmpty()) {
+		if(!findById.isPresent()) {
 			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(findById.get());
@@ -54,7 +54,7 @@ public class UsuarioController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Usuario> excluir(@PathVariable Long id) {
 		Optional<Usuario> findById = posts.findById(id);
-		if(findById.isEmpty()) {
+		if(!findById.isPresent()) {
 			return ResponseEntity.notFound().build();
 		}
 		posts.delete(findById.get());

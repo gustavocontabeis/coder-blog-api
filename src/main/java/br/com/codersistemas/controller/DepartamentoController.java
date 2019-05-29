@@ -40,7 +40,7 @@ public class DepartamentoController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Departamento> buscar(@PathVariable Long id) {
 		Optional<Departamento> findById = departamentos.findById(id);
-		if(findById.isEmpty()) {
+		if(!findById.isPresent()) {
 			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(findById.get());
@@ -51,7 +51,7 @@ public class DepartamentoController {
 	public Departamento adicionar(@Valid @RequestBody Departamento entity) {
 		
 		Optional<Departamento> findByNome = departamentos.findByNome(entity.getNome());
-		if(findByNome.isPresent())
+		if(!findByNome.isPresent())
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Já existe um departamento com o mesmo nome.");
 		
 		return departamentos.save(entity);
@@ -62,7 +62,7 @@ public class DepartamentoController {
 	public ResponseEntity<Departamento> remover(@PathVariable Long id) {
 		System.out.println();
 		Optional<Departamento> findById = departamentos.findById(id);
-		if(findById.isEmpty()) 
+		if(!findById.isPresent()) 
 			return ResponseEntity.notFound().build();
 		departamentos.delete(findById.get());
 		return ResponseEntity.ok(findById.get());
