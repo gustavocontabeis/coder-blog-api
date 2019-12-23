@@ -1,6 +1,32 @@
 package br.com.codersistemas;
 
-public class Teste {}
+import java.lang.reflect.Field;
+
+import org.junit.Test;
+
+import br.com.codersistemas.entity.Post;
+import br.com.codersistemas.libs.utils.ReflectionUtils;
+import br.com.codersistemas.libs.utils.StringUtil;
+
+public class Teste {
+	
+	@Test
+	public void gerarJson(){
+		
+		Field[] fields = ReflectionUtils.getFields(Post.class);
+		for (Field field : fields) {
+			System.out.print("{");
+			System.out.print("atributo: '" + field.getName() + "', ");
+			System.out.print("tipo: '" + field.getType().getSimpleName() + "', ");
+			System.out.print("obrigatorio: true, ");
+			System.out.print("tamanho: , ");
+			System.out.print("nome: '" + StringUtil.nome(field.getName()) + "', ");
+			System.out.print("}");
+			System.out.println("");
+		}
+		
+	}
+}
 
 
 
