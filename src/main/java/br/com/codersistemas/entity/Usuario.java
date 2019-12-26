@@ -2,6 +2,7 @@ package br.com.codersistemas.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,10 +25,11 @@ public class Usuario implements Serializable {
 	
 	@Id
 	@GeneratedValue(generator = "usuario_seq", strategy = GenerationType.SEQUENCE)
-	@SequenceGenerator(name = "usuario_seq", sequenceName = "usuario_seq")
+	@SequenceGenerator(name = "usuario_seq", sequenceName = "usuario_seq", initialValue=1000)
 	private Long id;
 	private String nome;
 	private TipoUsuario tipoUsuario;
+	@Column(unique=true)
 	private String email;
 	private String senha;
 	
