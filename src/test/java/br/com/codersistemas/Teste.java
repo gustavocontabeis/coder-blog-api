@@ -20,7 +20,7 @@ public class Teste {
 			System.out.print("tipo: '" + field.getType().getSimpleName() + "', ");
 			System.out.print("obrigatorio: true, ");
 			System.out.print("tamanho: , ");
-			System.out.print("nome: '" + StringUtil.nome(field.getName()) + "', ");
+			//System.out.print("nome: '" + StringUtil.label(field.getName()) + "', ");
 			System.out.print("}");
 			System.out.println("");
 		}

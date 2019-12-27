@@ -6,6 +6,8 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,8 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.codersistemas.entity.Usuario;
 import br.com.codersistemas.repository.UsuarioRepository;
+import lombok.extern.slf4j.Slf4j;
 
-
+@Slf4j
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/usuarios")
@@ -33,7 +36,8 @@ public class UsuarioController {
 	//http://localhost:8084/coder-blog/usuarios
 	@GetMapping
 	public List<Usuario> listar() {
-		return posts.findAll();
+		log.debug("listar!");
+		return posts.findAll(Sort.by(Order.asc("nome")));
 	}
 
 	@GetMapping("/{id}")

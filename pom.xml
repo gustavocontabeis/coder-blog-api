@@ -43,15 +43,18 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-<<<<<<< HEAD
-<!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
-<dependency>
-    <groupId>postgresql</groupId>
-    <artifactId>postgresql</artifactId>
-    <version>9.1-901.jdbc4</version>
-</dependency>
+		
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+		</dependency>
 
-=======
+<dependency>
+    <groupId>com.h2database</groupId>
+    <artifactId>h2</artifactId>
+    <version>1.4.197</version>
+    <scope>test</scope>
+</dependency>
 		
 		<dependency>
 			<groupId>br.com.codersistemas</groupId>
@@ -60,7 +63,6 @@
 			<scope>test</scope>
 		</dependency>
 		
->>>>>>> 324b782763dd1d590109f505fdf1fd05ab5bd8c1
 	</dependencies>
 
 	<build>
